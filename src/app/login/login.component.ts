@@ -24,6 +24,5 @@ export class LoginComponent implements OnInit {
     res => {console.log(res); if(res == 'ok'){this.invalidLogin = true; sessionStorage.setItem('username', this.userDataLogin.username)}},
     err => console.log(err)
     )
-    this._auth.isUserLoggedIn();
   }
 }
