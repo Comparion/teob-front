@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AccessService } from './services/access.service';
+import { AccessService } from './services/access/access.service';
+import { LoginComponent } from './login/login.component';
 //import { TscUiModule } from 'tsc-ui';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,

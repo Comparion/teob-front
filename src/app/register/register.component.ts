@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../User';
-import { AccessService } from '../services/access.service';
+import { AccessService } from '../services/access/access.service';
 //import { MessageBoxService } from 'tsc-ui';
 
 
@@ -13,6 +13,7 @@ import { AccessService } from '../services/access.service';
 export class RegisterComponent implements OnInit {
 
   userDataRegister: User = new User;
+  //userDataRegister = {};
 
   // username: string = '';
   // password: string = '';
