@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../User';
 import { AccessService } from '../services/access/access.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   userDataLogin: User = new User
   invalidLogin = false
 
-  constructor(public _auth: AccessService) { }
+  constructor(public _auth: AccessService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,8 +22,18 @@ export class LoginComponent implements OnInit {
     console.log(this.userDataLogin);
     this._auth.loginUser(this.userDataLogin)
     .subscribe(
-    res => {console.log(res); if(res == 'ok'){this.invalidLogin = true; sessionStorage.setItem('username', this.userDataLogin.username)}},
-    err => console.log(err)
+    res => {console.log(res); 
+      if(res == 'ok')
+      {
+        this.invalidLogin = true;
+        sessionStorage.setItem('username', this.userDataLogin.username);
+        this.router.navigateByUrl('/panel');
+      }
+    },
+    err => {console.log(err);
+    this.invalidLogin = false;
+    sessionStorage.removeItem('username');
+    }
     )
   }
 }

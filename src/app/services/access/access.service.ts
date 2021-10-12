@@ -9,6 +9,7 @@ export class AccessService {
 
   private _urlRegister = "http://localhost:8080/registration"
   private _urlLogin = "http://localhost:8080/login"
+  private _urlDelete = "http://localhost:8080/delete/"
 
  
   constructor(private http: HttpClient) { }
@@ -16,6 +17,11 @@ export class AccessService {
   
   registerUser(user: User) {
     return this.http.post<any>(this._urlRegister, user);
+  }
+
+  deleteUser(user: String) {
+    //this._urlDelete = this._urlDelete + user
+    return this.http.delete(this._urlDelete + user)
   }
 
   loginUser(user: User) {

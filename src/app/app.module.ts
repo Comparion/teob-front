@@ -8,13 +8,17 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccessService } from './services/access/access.service';
 import { LoginComponent } from './login/login.component';
+import { HeadComponent } from './head/head.component';
+import { PanelComponent } from './panel/panel.component';
 //import { TscUiModule } from 'tsc-ui';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    HeadComponent,
+    PanelComponent
   ],
   imports: [
     FormsModule,
