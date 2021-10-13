@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AccessService } from '../services/access/access.service';
+import { DetailService } from '../services/detail/detail.service';
+import { UserDetail } from '../UserDetail';
+
+
 
 @Component({
   selector: 'app-panel',
@@ -8,16 +12,29 @@ import { AccessService } from '../services/access/access.service';
 })
 export class PanelComponent implements OnInit {
 
-  currentUser = ""
+  currentUser = ''
+  userdetail: UserDetail;
 
-  constructor(public _auth: AccessService) { }
+
+  constructor(public _auth: AccessService, public _detail: DetailService) {
+   }
 
   ngOnInit(): void {
+    this.detail()
   }
 
     delete(){
     this.currentUser = sessionStorage.getItem('username') || '{}'
-    this._auth.deleteUser(this.currentUser)
+    this._detail.deleteUser(this.currentUser)
     .subscribe()
+  }
+
+  detail(){
+    this.currentUser = sessionStorage.getItem('username') || '{}'
+    this._detail.detailUser(this.currentUser)
+    .subscribe(
+      response => this.userdetail=response
+    )
+    console.log(this.userdetail)
   }
 }

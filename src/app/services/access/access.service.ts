@@ -19,10 +19,10 @@ export class AccessService {
     return this.http.post<any>(this._urlRegister, user);
   }
 
-  deleteUser(user: String) {
-    //this._urlDelete = this._urlDelete + user
-    return this.http.delete(this._urlDelete + user)
-  }
+  // deleteUser(user: String) {
+  //   //this._urlDelete = this._urlDelete + user
+  //   return this.http.delete(this._urlDelete + user)
+  // }
 
   loginUser(user: User) {
     let options = {
