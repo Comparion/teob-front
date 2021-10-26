@@ -14,6 +14,7 @@ export class PanelComponent implements OnInit {
 
   currentUser = ''
   userdetail: UserDetail;
+  editPanel = false;
 
 
   constructor(public _auth: AccessService, public _detail: DetailService) {
@@ -29,6 +30,7 @@ export class PanelComponent implements OnInit {
     .subscribe()
   }
 
+
   detail(){
     this.currentUser = sessionStorage.getItem('username') || '{}'
     this._detail.detailUser(this.currentUser)
@@ -37,4 +39,20 @@ export class PanelComponent implements OnInit {
     )
     console.log(this.userdetail)
   }
+
+  edit(){
+    this.editPanel = true;
+  }
+
+  save(userD: UserDetail){
+    console.log(userD)
+    this.editPanel = false;
+    this._detail.updateUser(this.currentUser,userD)
+    .subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
+    //console.log(this.userdetail)
+  }
+
 }

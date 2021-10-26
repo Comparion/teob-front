@@ -1,6 +1,6 @@
 export class UserDetail {
-    firstname: string;
-    secondname: string;
+    firstName: string;
+    secondName: string;
     numberPhone: BigInteger;
     interests: string;
     description: string;

@@ -9,16 +9,15 @@
             <img width="100" height="100" src="{{userdetail.profilePhotoURL}}">
           </div>
           <div class="card-body">
-            <h4 class="mb-0">Imię:  {{userdetail.firstname}}</h4> 
-            <h4 class="mb-0">Nazwisko:  {{userdetail.secondname}}</h4>
-            <h4 class="mb-0">Numer telefonu:  {{userdetail.numberPhone}}</h4>
-            <h4 class="mb-0">Zainteresowania:  {{userdetail.interests}}</h4>
-            <h4 class="mb-0">Opis: {{userdetail.description}}</h4>
-          </div>
-          <div class="card-body">
-            <form class="form">
-              <button (click)="delete()" type="button"  class="btn btn-primary float-right">Usuń konto</button>
-            </form>
+            <h4 class="mb-0">Imię:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.firstName}}"><input  [(ngModel)]="userdetail.firstName" *ngIf="this.editPanel" value="{{userdetail.firstName}}"></h4> 
+            <h4 class="mb-0">Nazwisko:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.secondName}}"><input [(ngModel)]="userdetail.secondName" *ngIf="this.editPanel" value="{{userdetail.secondName}}"></h4>
+            <h4 class="mb-0">Numer telefonu:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.numberPhone}}"><input [(ngModel)]="userdetail.numberPhone" *ngIf="this.editPanel" value="{{userdetail.numberPhone}}"></h4>
+            <h4 class="mb-0">Zainteresowania:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.interests}}"><input [(ngModel)]="userdetail.interests" *ngIf="this.editPanel" value="{{userdetail.interests}}"></h4>
+            <h4 class="mb-0">Opis:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.description}}"><input [(ngModel)]="userdetail.description" *ngIf="this.editPanel" value="{{userdetail.description}}"></h4>
+            <br>
+            <button (click)="delete()" type="button"  class="btn btn-primary float-right">Usuń konto</button>
+            <button *ngIf="!this.editPanel" (click)="edit()" type="button"  class="btn btn-primary float-right">Edytuj</button>
+            <button *ngIf="this.editPanel" (click)="save(userdetail)" type="button"  class="btn btn-primary float-right">Zapisz</button>
           </div>
         </div>
       </div>
