@@ -8,7 +8,8 @@
       <ul class="navbar-nav">
           <a class="nav-link" *ngIf="!_auth.isUserLoggedIn()"  routerLink="/login" routerLinkActive="active">Logowanie</a>
           <a class="nav-link" *ngIf="!_auth.isUserLoggedIn()" routerLink="/register" routerLinkActive="active">Rejestracja</a>  
-          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/panel" routerLinkActive="active">Panel użytkownika</a>    
+          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/panel" routerLinkActive="active">Panel użytkownika</a> 
+          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/table" routerLinkActive="active">Tablica</a>   
       </ul>
     </div>
   </nav>    

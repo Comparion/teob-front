@@ -10,6 +10,7 @@ import { AccessService } from './services/access/access.service';
 import { LoginComponent } from './login/login.component';
 import { HeadComponent } from './head/head.component';
 import { PanelComponent } from './panel/panel.component';
+import { TableComponent } from './table/table.component';
 //import { TscUiModule } from 'tsc-ui';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PanelComponent } from './panel/panel.component';
     RegisterComponent,
     LoginComponent,
     HeadComponent,
-    PanelComponent
+    PanelComponent,
+    TableComponent
   ],
   imports: [
     FormsModule,

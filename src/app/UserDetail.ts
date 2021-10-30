@@ -1,7 +1,7 @@
 export class UserDetail {
     firstName: string;
     secondName: string;
-    numberPhone: BigInteger;
+    numberPhone: string;
     interests: string;
     description: string;
     profilePhotoURL: string;
