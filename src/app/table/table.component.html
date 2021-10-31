@@ -1,15 +1,23 @@
-<div class="py-5">
-    <div class="row">
-      <div class="col-md-4 mx-auto">
-        <div class="card rounded-0">
-          <div class="card-header">
-            <h3 class="mb-0">Posty</h3>
-          </div>
-          <div *ngFor="let post of posts | async" class="card-body">
-            <h3><b>{{post.town}} - {{post.subject}}</b></h3>
-            <h4>{{post.body}}<span style="font-size: 10px;"> @{{post.username}}</span></h4>
-         </div>
-        </div>
-      </div>
+<div class="main">
+  <div class="card-header">
+    <h1 class="mb-0" style="text-align:center"><b>Posty</b></h1>
+  </div>
+  <div class="card container">
+  <div class="row">
+    <input class="col-6" placeholder="miasto" [(ngModel)]="postSend.town">
+    <input class="col-6" placeholder="temat"  [(ngModel)]="postSend.subject">
+  </div>
+  <div class="row">
+    <textarea  placeholder="treść" style="height: 80px;" [(ngModel)]="postSend.body"></textarea>
+  </div>
+  <div class="row">
+    <button (click)="dodaj(postSend)" type="button" class="btn btn-primary form-control">Dodaj</button>
+  </div>
+  </div>
+  <div class="row" *ngFor="let post of posts | async" class="card">
+    <div class="card rounded-0">
+      <h3><b>{{post.town}} - {{post.subject}}</b></h3>
+      <h4>{{post.body}}<span style="font-size: 10px;"> @{{post.username}}</span></h4>
     </div>
   </div>
+</div>

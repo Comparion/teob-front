@@ -5,8 +5,9 @@
           <div class="card-header">
             <h3 class="mb-0">Panel</h3>
           </div>
-          <div>
-            <img width="100" height="100" src="{{userdetail.profilePhotoURL}}">
+          <div class="container">
+            <h3 class="col-6"><b>{{currentUser}}</b></h3>
+            <img width="100" height="100" class="col-6 rounded-circle" src="{{userdetail.profilePhotoURL}}" id="profilePhoto">
           </div>
           <div class="card-body">
             <h4 class="mb-0">Imię:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.firstName}}"><input  [(ngModel)]="userdetail.firstName" *ngIf="this.editPanel" value="{{userdetail.firstName}}"></h4> 
@@ -15,9 +16,9 @@
             <h4 class="mb-0">Zainteresowania:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.interests}}"><input [(ngModel)]="userdetail.interests" *ngIf="this.editPanel" value="{{userdetail.interests}}"></h4>
             <h4 class="mb-0">Opis:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.description}}"><input [(ngModel)]="userdetail.description" *ngIf="this.editPanel" value="{{userdetail.description}}"></h4>
             <br>
-            <button (click)="delete()" type="button"  class="btn btn-primary float-right">Usuń konto</button>
+            <button (click)="delete()" type="button" style="margin-left: 20px;"  class="btn btn-primary float-right">Usuń konto</button>
             <button *ngIf="!this.editPanel" (click)="edit()" type="button"  class="btn btn-primary float-right">Edytuj</button>
-            <button *ngIf="this.editPanel" (click)="save(userdetail)" type="button"  class="btn btn-primary float-right">Zapisz</button>
+            <button *ngIf="this.editPanel"  (click)="save(userdetail)" type="button"  class="btn btn-primary float-right">Zapisz</button>
           </div>
         </div>
       </div>

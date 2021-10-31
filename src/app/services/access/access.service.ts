@@ -15,6 +15,7 @@ export class AccessService {
   private _urlLogin = "http://localhost:8080/login"
   private _urlDelete = "http://localhost:8080/delete/"
   private _urlPosts = "http://localhost:8080/getposts"
+  private _urlAddPost = "http://localhost:8080/posts"
   posts: Post[] = [];
 
  
@@ -55,6 +56,10 @@ export class AccessService {
       })
 
     )
+  }
+
+  addPost(post: Post){
+    return this.http.post(this._urlAddPost, post,{ responseType: 'text' });
   }
 
   // getPosts(){
