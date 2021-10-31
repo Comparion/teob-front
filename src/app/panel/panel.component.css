@@ -1,0 +1,12 @@
+input:read-only {
+    color:  #626567 ;
+    background-color: #f2f3f4;
+  }
+
+ #profilePhoto{
+    float: right; 
+ } 
+ 
+ .container {
+    display: flex; 
+}
