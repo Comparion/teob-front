@@ -21,7 +21,7 @@
               </div>
               <div class="form-group">
                 <label>Podaj ponownie hasło</label>
-                <input type="password"  name="password2" class="form-control rounded-0"  required>
+                <input [(ngModel)]="supportPass" type="password"  name="password2" class="form-control rounded-0"  required>
               </div>
               <button (click)="register()" type="button"  class="btn btn-primary float-right">Zarejestruj się</button>
             </form>

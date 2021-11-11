@@ -3,6 +3,11 @@ input:read-only {
     background-color: #f2f3f4;
   }
 
+textarea:read-only {
+   color:  #626567 ;
+   background-color: #f2f3f4;
+ }
+
  #profilePhoto{
     float: right; 
  } 

@@ -14,6 +14,15 @@
     <button (click)="dodaj(postSend)" type="button" class="btn btn-primary form-control">Dodaj</button>
   </div>
   </div>
+  <div class="card container">
+    <div class="row">
+      <input class="col-6" placeholder="miasto" [(ngModel)]="town">
+      <input class="col-6" placeholder="temat" [(ngModel)]="subject">
+    </div>
+    <div class="row">
+      <button (click)="wyszukaj()" type="button" class="btn btn-primary form-control">Wyszukaj</button>
+    </div>
+  </div>
   <div class="row" *ngFor="let post of posts | async" class="card">
     <div class="card rounded-0">
       <h3><b>{{post.town}} - {{post.subject}}</b></h3>

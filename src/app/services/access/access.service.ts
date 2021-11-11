@@ -14,8 +14,7 @@ export class AccessService {
   private _urlRegister = "http://localhost:8080/registration"
   private _urlLogin = "http://localhost:8080/login"
   private _urlDelete = "http://localhost:8080/delete/"
-  private _urlPosts = "http://localhost:8080/getposts"
-  private _urlAddPost = "http://localhost:8080/posts"
+  private _urlPosts = "http://localhost:8080/posts"
   posts: Post[] = [];
 
  
@@ -23,7 +22,8 @@ export class AccessService {
 
   
   registerUser(user: User) {
-    return this.http.post<any>(this._urlRegister, user);
+    //return this.http.post<any>(this._urlRegister, user);
+    return this.http.post(this._urlRegister, user,{ responseType: 'text' });
   }
 
   // deleteUser(user: String) {
@@ -48,8 +48,16 @@ export class AccessService {
     return !(user === null)
   }
 
-  getPosts(){
-    return this.http.get<Post[]>(this._urlPosts).pipe(
+  getPosts(town: String, subject: String){
+    let urlPosts =  this._urlPosts;
+    if(town!=''&&subject!=''){
+      urlPosts=urlPosts+'?town='+town+'&subject='+ subject;
+    } else if(town!=''){
+      urlPosts=urlPosts+'?town='+town
+    } else if(subject!=''){
+      urlPosts=urlPosts+'?subject='+subject
+    }
+    return this.http.get<Post[]>(urlPosts).pipe(
       map(posts => {
         this.posts = posts;
         return posts;
@@ -59,7 +67,7 @@ export class AccessService {
   }
 
   addPost(post: Post){
-    return this.http.post(this._urlAddPost, post,{ responseType: 'text' });
+    return this.http.post(this._urlPosts, post,{ responseType: 'text' });
   }
 
   // getPosts(){
