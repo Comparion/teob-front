@@ -9,7 +9,8 @@
           <a class="nav-link" *ngIf="!_auth.isUserLoggedIn()"  routerLink="/login" routerLinkActive="active">Logowanie</a>
           <a class="nav-link" *ngIf="!_auth.isUserLoggedIn()" routerLink="/register" routerLinkActive="active">Rejestracja</a>  
           <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/panel" routerLinkActive="active">Panel użytkownika</a> 
-          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/table" routerLinkActive="active">Tablica</a>   
+          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/table" routerLinkActive="active">Tablica</a>
+          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/search" routerLinkActive="active">Użytkownicy</a>   
       </ul>
     </div>
   </nav>    

@@ -24,7 +24,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPosts();
-    //this.posts.forEach(obj => {obj.forEach(objChild => console.log(objChild.town))})
+    //this.posts.forEach(obj => {obj.forEach(objChild => console.log(objChild.town, objChild.id))})
 
   }
 

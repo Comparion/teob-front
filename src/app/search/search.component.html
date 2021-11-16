@@ -1,0 +1,22 @@
+<div class="main">
+    <div class="card-header">
+      <h1 class="mb-0" style="text-align:center"><b>Użytkownicy</b></h1>
+    </div>
+    <div class="card container">
+      <div class="row">
+        <input class="col-6" placeholder="imię" [(ngModel)]="firstname">
+        <input class="col-6" placeholder="nazwisko" [(ngModel)]="secondname">
+        <input class="col-6" placeholder="nazwa użytkownika" [(ngModel)]="username">
+      </div>
+      <div class="row">
+        <button (click)="wyszukajUzytkownikow()" type="button" class="btn btn-primary form-control">Wyszukaj</button>
+      </div>
+    </div>
+    <div class="row" *ngFor="let user of users | async" class="card">
+      <div class="card rounded-0">
+        <h3><b>{{user.username}}</b></h3>
+        <h4>{{user.firstName}} {{user.secondName}}</h4>
+      </div>
+    </div>
+  </div>
+  

@@ -4,6 +4,7 @@ import { User } from '../../User';
 import { Post } from '../../Post';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UserDetail } from 'src/app/UserDetail';
 
 
 @Injectable({
@@ -15,7 +16,9 @@ export class AccessService {
   private _urlLogin = "http://localhost:8080/login"
   private _urlDelete = "http://localhost:8080/delete/"
   private _urlPosts = "http://localhost:8080/posts"
+  private _urlFind = "http://localhost:8080/finduser"
   posts: Post[] = [];
+  users: UserDetail[] = [];
 
  
   constructor(private http: HttpClient) { }
@@ -61,6 +64,26 @@ export class AccessService {
       map(posts => {
         this.posts = posts;
         return posts;
+      })
+
+    )
+  }
+
+  findUsers(firstname: String, secondname: String, username: String){
+    let urlFind =  this._urlFind;
+    if(username != ''){
+      urlFind=urlFind+'?username='+username
+    }else if(firstname!=''&&secondname!=''){
+      urlFind=urlFind+'?firstname='+firstname+'&secondname='+ secondname;
+    } else if(firstname!=''){
+      urlFind=urlFind+'?firstname='+firstname
+    } else if(secondname!=''){
+      urlFind=urlFind+'?secondname='+secondname
+    }
+    return this.http.get<UserDetail[]>(urlFind).pipe(
+      map(users => {
+        this.users = users;
+        return users;
       })
 
     )

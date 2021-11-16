@@ -5,4 +5,5 @@ export class UserDetail {
     interests: string;
     description: string;
     profilePhotoURL: string;
+    username: string;
 }
