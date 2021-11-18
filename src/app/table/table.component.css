@@ -12,3 +12,9 @@
     align-items: center;
     justify-content: center;
   }
+
+.countInterests:hover{
+    opacity : 0.70;
+    filter : alpha(opacity=70);
+    cursor:pointer;
+}  

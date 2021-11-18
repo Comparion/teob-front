@@ -12,6 +12,7 @@ import { AccessService } from '../services/access/access.service';
 })
 export class TableComponent implements OnInit {
   posts: Observable<Post[]>;
+  interests:  Observable<Interest[]>;
   postSend: Post = new Post;
   town: string = ''
   subject = ''
@@ -50,6 +51,12 @@ export class TableComponent implements OnInit {
     this.posts = this._auth.getPosts(this.town, this.subject, this.currentUser);
   }
 
+  getInterests(idPost: BigInteger){
+    this.interests = this._auth.getInterests(idPost);
+    //console.log(this.interests.forEach.)
+    this.interests.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username))})
+  }
+
   policz(post: Post){
     console.log(post);
     return (post.interests.forEach).length;
@@ -61,7 +68,7 @@ export class TableComponent implements OnInit {
     this.interest.idPost = idPost;
     console.log(this.interest.idPost, this.interest.username)
     this._auth.addInterest(this.interest).subscribe(
-      res => {console.log(res)}, 
+      res => {console.log(res), window.location.reload();}, 
       err => console.log(err)
     );
   }

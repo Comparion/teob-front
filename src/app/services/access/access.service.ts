@@ -19,8 +19,10 @@ export class AccessService {
   private _urlPosts = "http://localhost:8080/posts"
   private _urlFind = "http://localhost:8080/finduser"
   private _urlInterest = "http://localhost:8080/interests"
+  private _urlInterests = "http://localhost:8080/getinterests?idPost="
   posts: Post[] = [];
   users: UserDetail[] = [];
+  interests: Interest[] = [];
 
  
   constructor(private http: HttpClient) { }
@@ -98,6 +100,19 @@ export class AccessService {
   addInterest(interest: Interest){
     return this.http.post(this._urlInterest, interest,{ responseType: 'text' });
   }
+
+
+  getInterests(idPost: BigInteger){
+    let urlInterests =  this._urlInterests + idPost;
+    return this.http.get<Interest[]>(urlInterests).pipe(
+      map(interests => {
+        this.interests = interests;
+        return interests;
+      })
+
+    )
+  }
+
 
   // getPosts(){
   //   const ret = this.http.get<Post[]>(this._urlPosts);
