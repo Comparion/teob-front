@@ -1,3 +1,14 @@
 .container {
     display: flex; 
 }
+
+.niezainteresowany {
+    background-color: white;
+    color: black;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

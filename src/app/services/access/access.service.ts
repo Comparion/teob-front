@@ -5,6 +5,7 @@ import { Post } from '../../Post';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDetail } from 'src/app/UserDetail';
+import { Interest } from 'src/app/Interest';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class AccessService {
   private _urlDelete = "http://localhost:8080/delete/"
   private _urlPosts = "http://localhost:8080/posts"
   private _urlFind = "http://localhost:8080/finduser"
+  private _urlInterest = "http://localhost:8080/interests"
   posts: Post[] = [];
   users: UserDetail[] = [];
 
@@ -51,14 +53,14 @@ export class AccessService {
     return !(user === null)
   }
 
-  getPosts(town: String, subject: String){
-    let urlPosts =  this._urlPosts;
+  getPosts(town: String, subject: String, username: String){
+    let urlPosts =  this._urlPosts + '?username=' + username;
     if(town!=''&&subject!=''){
-      urlPosts=urlPosts+'?town='+town+'&subject='+ subject;
+      urlPosts=urlPosts+'&town='+town+'&subject='+ subject;
     } else if(town!=''){
-      urlPosts=urlPosts+'?town='+town
+      urlPosts=urlPosts+'&town='+town
     } else if(subject!=''){
-      urlPosts=urlPosts+'?subject='+subject
+      urlPosts=urlPosts+'&subject='+subject
     }
     return this.http.get<Post[]>(urlPosts).pipe(
       map(posts => {
@@ -91,6 +93,10 @@ export class AccessService {
 
   addPost(post: Post){
     return this.http.post(this._urlPosts, post,{ responseType: 'text' });
+  }
+
+  addInterest(interest: Interest){
+    return this.http.post(this._urlInterest, interest,{ responseType: 'text' });
   }
 
   // getPosts(){
