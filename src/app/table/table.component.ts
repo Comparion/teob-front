@@ -5,6 +5,8 @@ import { Interest } from '../Interest';
 import { Post } from '../Post';
 import { AccessService } from '../services/access/access.service';;
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { DetailService } from '../services/detail/detail.service';
+import { UserDetail } from '../UserDetail';
 
 
 @Component({
@@ -21,8 +23,9 @@ export class TableComponent implements OnInit {
   currentUser = '';
   interest: Interest = new Interest;
   closeResult = '';
+  userdetail: UserDetail;
 
-  constructor(public _auth: AccessService, private modalService: NgbModal) { }
+  constructor(public _auth: AccessService, private modalService: NgbModal, public _detail: DetailService) { }
 
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
@@ -98,4 +101,12 @@ export class TableComponent implements OnInit {
     }
   }
 
+
+  getUserDetail(username: String){
+    this._detail.detailUser(username)
+    .subscribe(
+      response => this.userdetail=response
+    )
+    console.log(this.userdetail)
+  }
 }

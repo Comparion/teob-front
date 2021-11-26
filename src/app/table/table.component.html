@@ -26,7 +26,7 @@
   <div class="row" *ngFor="let post of posts | async; let i = index" class="card">
     <div class="card rounded-0">
       <h3><b>{{post.town}} - {{post.subject}}</b></h3>
-      <h4>{{post.body}}<span style="font-size: 10px;"> @{{post.username}}</span><span style="float: right; margin-right: 5%; font-size: 40px;"><b class="countInterests" (click)="getInterests(post.id)" (click)="open(mymodal)">{{post.interests}}</b></span></h4>
+      <h4>{{post.body}}<span style="font-size: 10px;" class="ownerPost" (click)="getUserDetail(post.username)" (click)="open(userDetailModal)"> @{{post.username}}</span><span style="float: right; margin-right: 5%; font-size: 40px;"><b class="countInterests" (click)="getInterests(post.id)" (click)="open(mymodal)">{{post.interests}}</b></span></h4>
       <button (click)="addInterest(post.id)"  type="button" style="width: 30%;" class="btn btn-primary form-control" *ngIf="post.interestUser">Jestem Zainteresowany</button><button (click)="addInterest(post.id)" style="width: 30%;" type="button" class="btn btn-primary form-control niezainteresowany" *ngIf="!post.interestUser">Jestem Zainteresowany</button>
     </div>
   </div>
@@ -38,7 +38,28 @@
       <span aria-hidden="true">×</span>
     </button>
   </div>
-  <div class="modal-body" *ngFor="let interest of interests | async; let i = index">
-    {{interest.firstName}} {{interest.secondName}} @{{interest.username}}
+  <div class="modal-body" *ngFor="let interest of interests | async; let i = index" (click)="getUserDetail(interest.username)" (click)="open(userDetailModal)">
+    <h3><b>{{interest.firstName}} {{interest.secondName}} </b> <span style="font-size: 10px;"  class="ownerPost">@{{interest.username}}</span></h3>
   </div>
+</ng-template>
+
+<ng-template #userDetailModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><b style="font-size: 32px; text-align: center;">{{userdetail.username}}</b></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body card-body">
+    <h3 class="col-6 align-self-center"></h3>
+          <div class="col-6">
+            <img width="100" class="rounded-circle" height="100"  src="{{userdetail.profilePhotoURL}}"id="profilePhoto">
+          </div>
+    <h4 class="mb-0"><b>Imię: </b>{{userdetail.firstName}}</h4>
+    <h4 class="mb-0"><b>Nazwisko: </b>{{userdetail.secondName}}</h4>
+    <h4 class="mb-0"><b>Numer telefonu: </b>{{userdetail.numberPhone}}</h4>
+    <h4 class="mb-0"><b>Zainteresowania: </b>{{userdetail.interests}}</h4>
+    <h4 class="mb-0"><b>Opis: </b>{{userdetail.description}}</h4>
+  </div>
+
 </ng-template>
