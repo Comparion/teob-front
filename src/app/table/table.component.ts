@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { isWhileStatement } from 'typescript';
 import { Interest } from '../Interest';
 import { Post } from '../Post';
-import { AccessService } from '../services/access/access.service';
+import { AccessService } from '../services/access/access.service';;
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-table',
@@ -18,11 +20,13 @@ export class TableComponent implements OnInit {
   subject = ''
   currentUser = '';
   interest: Interest = new Interest;
+  closeResult = '';
 
-  constructor(public _auth: AccessService) { }
+  constructor(public _auth: AccessService, private modalService: NgbModal) { }
 
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
+    
 }
 
   ngOnInit(): void {
@@ -41,6 +45,7 @@ export class TableComponent implements OnInit {
     );
   }
 
+ 
   wyszukaj(){
     this.getPosts();
     //window.location.reload();
@@ -54,7 +59,8 @@ export class TableComponent implements OnInit {
   getInterests(idPost: BigInteger){
     this.interests = this._auth.getInterests(idPost);
     //console.log(this.interests.forEach.)
-    this.interests.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username))})
+    //this.interests.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username))})
+  
   }
 
   policz(post: Post){
@@ -71,6 +77,25 @@ export class TableComponent implements OnInit {
       res => {console.log(res), window.location.reload();}, 
       err => console.log(err)
     );
+  }
+
+
+  open(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }
