@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
       this._auth.registerUser(this.userDataRegister)
         .subscribe(
           res => {
-            console.log(res);
+            //console.log(res);
             if (res == 'ok') {
               window.alert("Zarejestrowano użytkownika.");
               this.router.navigateByUrl('/login');
             }
           },
-          err => console.log(err)
+         err => {window.alert("Podany nazwa użytkownika/email są już zajęte.");}//console.log(err),
         )
     } else {
       window.alert("Podane hasła nie są identyczne.")

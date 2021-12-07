@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/panel');
       }
     },
-    err => {console.log(err);
+    err => {
+    window.alert("Błędne dane do logowania/podany użytkownik nie istnieje.");
     this.invalidLogin = false;
     sessionStorage.removeItem('username');
     }

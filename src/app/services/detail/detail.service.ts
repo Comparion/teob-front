@@ -9,14 +9,14 @@ import { User } from '../../User';
 })
 export class DetailService {
 
-  private _urlDelete = "http://localhost:8080/delete/kasia"
+  private _urlDelete = "http://localhost:8080/delete/"
   private _urlDetail = "http://localhost:8080/detail/"
   private _urlUpdate = "http://localhost:8080/updatedetail/"
 
   constructor(private http: HttpClient) { }
 
   deleteUser(user: String) {
-    //this._urlDelete = this._urlDelete + user
+    this._urlDelete = this._urlDelete + user
     return this.http.delete(this._urlDelete )
   }
 

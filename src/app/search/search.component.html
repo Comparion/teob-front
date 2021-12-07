@@ -13,14 +13,19 @@
                 class="btn btn-primary form-control">Wyszukaj</button>
         </div>
     </div>
-    <div class="row" *ngFor="let user of users | async" class="card">
-        <div class="card container rounded-0">
-            <div>
-                <img width="100" class="rounded-circle" height="100"  src="{{user.profilePhotoURL}}" id="profilePhoto">
-                <span class="col-4" id="username"><b>{{user.username}}</b></span>
-                <span class="col-4">{{user.firstName}} {{user.secondName}}</span>
-                <span class="col-4">{{user.description}} {{user.interests}} {{user.numberPhone}}</span>
-            </div>
+    <div class="row" *ngFor="let user of users | async">
+    
+        <div class="col">
+            <div class="row"><img class="rounded-circle" src="{{user.profilePhotoURL}}" id="profilePhoto"></div>
+            <div class="row"><b>{{user.username}}</b></div>
         </div>
+        <div class="col">
+            <div class="row">Imie: {{user.firstName}}</div>
+            <div class="row">Nazwisko: {{user.secondName}}</div>
+            <div class="row">Numer: {{user.numberPhone}}</div>
+            <div class="row">Zainteresowania: {{user.interests}}</div>
+        </div>
+        <div class="col">Opis: {{user.description}}</div>
+    
     </div>
 </div>
