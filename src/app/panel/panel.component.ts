@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccessService } from '../services/access/access.service';
 import { DetailService } from '../services/detail/detail.service';
 import { UserDetail } from '../UserDetail';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -15,9 +16,10 @@ export class PanelComponent implements OnInit {
   currentUser = ''
   userdetail: UserDetail;
   editPanel = false;
+  closeResult = '';
 
 
-  constructor(public _auth: AccessService, public _detail: DetailService) {
+  constructor(public _auth: AccessService, public _detail: DetailService, private modalService: NgbModal) {
    }
 
   ngOnInit(): void {
@@ -55,4 +57,21 @@ export class PanelComponent implements OnInit {
     //console.log(this.userdetail)
   }
 
+  open(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 }

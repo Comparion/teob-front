@@ -15,3 +15,10 @@ textarea:read-only {
  .container {
     display: flex; 
 }
+
+.photo:hover{
+   opacity : 0.70;
+   filter : alpha(opacity=70);
+   cursor:pointer;
+   color: blue;
+}  
