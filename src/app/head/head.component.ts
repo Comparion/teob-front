@@ -8,19 +8,14 @@ import { AccessService } from '../services/access/access.service';
 })
 export class HeadComponent implements OnInit {
 
-  main = false;
-
   constructor(public _auth: AccessService) { }
 
   ngOnInit(): void {
+    
   }
 
-  showMain(): void {
-    this.main = true;
-  }
-
-  notShowMain(): void {
-    this.main = false;
+  wyloguj(): void {
+    sessionStorage.removeItem('username');
   }
 
 }

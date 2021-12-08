@@ -12,6 +12,7 @@ import { HeadComponent } from './head/head.component';
 import { PanelComponent } from './panel/panel.component';
 import { TableComponent } from './table/table.component';
 import { SearchComponent } from './search/search.component';
+import { MainComponent } from './main/main.component';
 //import { TscUiModule } from 'tsc-ui';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SearchComponent } from './search/search.component';
     HeadComponent,
     PanelComponent,
     TableComponent,
-    SearchComponent
+    SearchComponent,
+    MainComponent
   ],
   imports: [
     FormsModule,

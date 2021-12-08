@@ -13,7 +13,7 @@
                 class="btn btn-primary form-control">Wyszukaj</button>
         </div>
     </div>
-    <div class="row" *ngFor="let user of users | async">
+    <div class="row border"  *ngFor="let user of users | async">
     
         <div class="col">
             <div class="row"><img class="rounded-circle" src="{{user.profilePhotoURL}}" id="profilePhoto"></div>
