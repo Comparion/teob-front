@@ -1,0 +1,24 @@
+input:read-only {
+    color:  #626567 ;
+    background-color: #f2f3f4;
+  }
+
+textarea:read-only {
+   color:  #626567 ;
+   background-color: #f2f3f4;
+ }
+
+ #profilePhoto{
+    float: right; 
+ } 
+ 
+ .container {
+    display: flex; 
+}
+
+.photo:hover{
+   opacity : 0.70;
+   filter : alpha(opacity=70);
+   cursor:pointer;
+   color: blue;
+}  

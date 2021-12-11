@@ -1,0 +1,57 @@
+<div class="py-5">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card rounded-0">
+        <div class="card-header">
+          <h3 class="mb-0">Panel</h3>
+        </div>
+        <div class="container">
+          <h3 class="col-6 align-self-center"><b>{{currentUser}}</b></h3>
+          <div class="col-6">
+            <img width="100" (click)="open(mymodal)" class="rounded-circle photo" height="100"  src="{{userdetail.profilePhotoURL}}"id="profilePhoto">
+          </div>
+        </div>
+        <div class="card-body">
+          <h4 class="mb-0">Imię:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.firstName}}"><input
+              [(ngModel)]="userdetail.firstName" *ngIf="this.editPanel" value="{{userdetail.firstName}}"></h4>
+          <h4 class="mb-0">Nazwisko:<input [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.secondName}}"><input [(ngModel)]="userdetail.secondName" *ngIf="this.editPanel"
+              value="{{userdetail.secondName}}"></h4>
+          <h4 class="mb-0">Numer telefonu:<input [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.numberPhone}}"><input [(ngModel)]="userdetail.numberPhone" *ngIf="this.editPanel"
+              value="{{userdetail.numberPhone}}"></h4>
+          <h4 class="mb-0">Zainteresowania:<input [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.interests}}"><input [(ngModel)]="userdetail.interests" *ngIf="this.editPanel"
+              value="{{userdetail.interests}}"></h4>
+          <h4 class="mb-0">Opis:<textarea [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.description}}"></textarea><textarea [(ngModel)]="userdetail.description" *ngIf="this.editPanel"
+              value="{{userdetail.description}}"></textarea></h4>
+          <br>
+          <button (click)="delete()" type="button" style="margin-left: 20px;" class="btn btn-primary float-right">Usuń
+            konto</button>
+          <button *ngIf="!this.editPanel" (click)="edit()" type="button"
+            class="btn btn-primary float-right">Edytuj</button>
+          <button *ngIf="this.editPanel" (click)="save(userdetail)" type="button"
+            class="btn btn-primary float-right">Zapisz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Zdjęcie</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <br>
+  <div class="modal-body">
+    <h4 class="mb-0"><textarea [(ngModel)]="userdetail.profilePhotoURL"
+        value="{{userdetail.profilePhotoURL}}"></textarea></h4>
+  </div>
+  <div class="modal-footer">
+    <button (click)="save(userdetail)" (click)="modal.dismiss('Cross click')" type="button"class="btn btn-primary float-right">Zapisz</button>
+  </div>
+</ng-template>
