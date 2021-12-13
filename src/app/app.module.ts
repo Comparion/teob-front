@@ -13,6 +13,8 @@ import { PanelComponent } from './panel/panel.component';
 import { TableComponent } from './table/table.component';
 import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { ReactiveFormsModule } from '@angular/forms';
 //import { TscUiModule } from 'tsc-ui';
 
 @NgModule({
@@ -32,6 +34,8 @@ import { MainComponent } from './main/main.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    NgxCaptchaModule,
+    ReactiveFormsModule
     //TscUiModule
   ],
   providers: [AccessService],

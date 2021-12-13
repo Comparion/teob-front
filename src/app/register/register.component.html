@@ -6,22 +6,30 @@
             <h3 class="mb-0">Rejestracja</h3>
           </div>
           <div class="card-body">
-            <form class="form">
+            <form class="form" [formGroup]="registerForm">
               <div class="form-group">
                 <label>Nazwa użytkownika</label>
-                <input [(ngModel)]="userDataRegister.username" type="text"  name="username" class="form-control rounded-0" required>
+                <input [(ngModel)]="userDataRegister.username" formControlName="username" type="text"  name="username" class="form-control rounded-0" required>
               </div>
               <div class="form-group">
                 <label>E-mail</label>
-                <input [(ngModel)]="userDataRegister.email" type="text"  name="email" class="form-control rounded-0" required>
+                <input [(ngModel)]="userDataRegister.email" formControlName="email" type="text"  name="email" class="form-control rounded-0" required>
               </div>
               <div class="form-group">
                 <label>Hasło</label>
-                <input [(ngModel)]="userDataRegister.password" type="password"  name="password" class="form-control rounded-0"  required>
+                <input [(ngModel)]="userDataRegister.password" type="password" formControlName="password" name="password" class="form-control rounded-0"  required>
               </div>
               <div class="form-group">
                 <label>Podaj ponownie hasło</label>
-                <input [(ngModel)]="supportPass" type="password"  name="password2" class="form-control rounded-0"  required>
+                <input [(ngModel)]="supportPass" type="password"  name="password2" formControlName="supportPass" class="form-control rounded-0"  required>
+              </div>
+              <div class="form-group mt-2">
+                <ngx-recaptcha2 #captchaElem
+                  formControlName="captcha"
+                  [siteKey]="siteKey"
+                  size="normal"
+                  theme="light">
+                </ngx-recaptcha2>
               </div>
               <button (click)="register()" type="button"  class="btn btn-primary float-right">Zarejestruj się</button>
             </form>
