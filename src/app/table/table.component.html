@@ -27,8 +27,9 @@
   <div class="row" *ngFor="let post of posts | async; let i = index" class="card">
     <div class="card rounded-0">
       <h3><b>{{post.town}} - {{post.subject}}</b></h3>
-      <h4>{{post.body}}<span style="font-size: 10px;" class="ownerPost" (click)="getUserDetail(post.username)" (click)="open(userDetailModal)"> @{{post.username}}</span><span style="float: right; margin-right: 5%; font-size: 40px;"><b class="countInterests" (click)="getInterests(post.id)" (click)="open(mymodal)">{{post.interests}}</b></span></h4>
-      <button (click)="addInterest(post.id)"  type="button" style="width: 30%;" class="btn btn-primary form-control" *ngIf="post.interestUser">Jestem Zainteresowany</button><button (click)="addInterest(post.id)" style="width: 30%;" type="button" class="btn btn-primary form-control niezainteresowany" *ngIf="!post.interestUser">Jestem Zainteresowany</button>
+      <h4>{{post.body}}<span style="font-size: 10px;" class="ownerPost" (click)="getUserDetail(post.username)" (click)="open(userDetailModal)"> @{{post.username}}</span><span style="float: right; margin-right: 14%; font-size: 40px;"><b class="countInterests" (click)="getInterests(post.id)" (click)="open(mymodal)">{{post.interests}}</b></span></h4>
+      <button (click)="getComments(post.id)" (click)="open(mymodalComments)" (click)="this.commentPost.idPost=post.id"  type="button" style="width: 30%;"  class="btn btn-primary form-control">Komentarze</button>
+      <button (click)="addInterest(post.id)"  type="button" style="width: 30%; position: absolute; right: 5px; bottom:0px;"  class="btn btn-primary form-control" *ngIf="post.interestUser">Jestem Zainteresowany</button><button (click)="addInterest(post.id)" style="width: 30%; position: absolute; right: 5px; bottom:0px;" type="button" class="btn btn-primary form-control niezainteresowany" *ngIf="!post.interestUser">Jestem Zainteresowany</button>
     </div>
   </div>
 </div>
@@ -41,6 +42,23 @@
   </div>
   <div class="modal-body" *ngFor="let interest of interests | async; let i = index" (click)="getUserDetail(interest.username)" (click)="open(userDetailModal)">
     <h3><b>{{interest.firstName}} {{interest.secondName}} </b> <span style="font-size: 10px;"  class="ownerPost">@{{interest.username}}</span></h3>
+  </div>
+</ng-template>
+
+<ng-template #mymodalComments let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Komentarze:</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body border" *ngFor="let comment of comments | async; let i = index" (click)="getUserDetail(comment.username)" (click)="open(userDetailModal)">
+    <h3><b>{{comment.firstName}} {{comment.secondName}} </b> <span style="font-size: 10px;"  class="ownerPost">@{{comment.username}}</span></h3>
+    <h4>{{comment.contents}}</h4>
+  </div>
+  <div class="modal-footer">
+    <h4 class="mb-0"><textarea [(ngModel)]="commentContents"></textarea></h4>
+    <button (click)="addComment()" type="button"class="btn btn-primary float-right">Dodaj</button>
   </div>
 </ng-template>
 

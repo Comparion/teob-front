@@ -16,7 +16,7 @@
     <div class="row border"  *ngFor="let user of users | async">
     
         <div class="col">
-            <div class="row"><img class="rounded-circle" src="{{user.profilePhotoURL}}" id="profilePhoto"></div>
+            <div class="row"><img class="rounded-circle responsive" src="{{user.profilePhotoURL}}" id="profilePhoto"></div>
             <div class="row"><b>{{user.username}}</b></div>
         </div>
         <div class="col">

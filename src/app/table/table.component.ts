@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { isWhileStatement } from 'typescript';
 import { Interest } from '../Interest';
 import { Post } from '../Post';
+import { CommentPost } from '../CommentPost';
 import { AccessService } from '../services/access/access.service';;
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { DetailService } from '../services/detail/detail.service';
@@ -17,13 +18,16 @@ import { UserDetail } from '../UserDetail';
 export class TableComponent implements OnInit {
   posts: Observable<Post[]>;
   interests:  Observable<Interest[]>;
+  comments:  Observable<CommentPost[]>;
   postSend: Post = new Post;
   town: string = ''
   subject = ''
   currentUser = '';
   interest: Interest = new Interest;
+  commentPost: CommentPost = new CommentPost;
   closeResult = '';
   userdetail: UserDetail;
+  commentContents = '';
 
   constructor(public _auth: AccessService, private modalService: NgbModal, public _detail: DetailService) { }
 
@@ -66,6 +70,12 @@ export class TableComponent implements OnInit {
   
   }
 
+  getComments(idPost: BigInteger){
+    this.comments = this._auth.getComments(idPost);
+    this.comments.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username, objChild.idComment, objChild.idPost, objChild.contents))})
+  
+  }
+
   policz(post: Post){
     console.log(post);
     return (post.interests.forEach).length;
@@ -77,6 +87,19 @@ export class TableComponent implements OnInit {
     this.interest.idPost = idPost;
     console.log(this.interest.idPost, this.interest.username)
     this._auth.addInterest(this.interest).subscribe(
+      res => {console.log(res), window.location.reload();}, 
+      err => console.log(err)
+    );
+  }
+
+  addComment(){
+    //console.log("too " + idPost)
+    this.currentUser = sessionStorage.getItem('username') || '{}';
+    this.commentPost.username = this.currentUser;
+    //this.commentPost.idPost = idPost;
+    this.commentPost.contents = this.commentContents;
+    console.log(this.commentPost.idPost, this.commentPost.username)
+    this._auth.addComment(this.commentPost).subscribe(
       res => {console.log(res), window.location.reload();}, 
       err => console.log(err)
     );

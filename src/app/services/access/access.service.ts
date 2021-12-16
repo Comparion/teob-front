@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDetail } from 'src/app/UserDetail';
 import { Interest } from 'src/app/Interest';
+import { CommentPost } from 'src/app/CommentPost';
 
 
 @Injectable({
@@ -20,9 +21,12 @@ export class AccessService {
   private _urlFind = "http://localhost:8080/finduser"
   private _urlInterest = "http://localhost:8080/interests"
   private _urlInterests = "http://localhost:8080/getinterests?idPost="
+  private _urlComment = "http://localhost:8080/comments"
+  private _urlComments = "http://localhost:8080/getcomments?idPost="
   posts: Post[] = [];
   users: UserDetail[] = [];
   interests: Interest[] = [];
+  comments: Comment[] = []
 
  
   constructor(private http: HttpClient) { }
@@ -101,6 +105,10 @@ export class AccessService {
     return this.http.post(this._urlInterest, interest,{ responseType: 'text' });
   }
 
+  addComment(comment: CommentPost){
+    return this.http.post(this._urlComment, comment,{ responseType: 'text' });
+  }
+
 
   getInterests(idPost: BigInteger){
     let urlInterests =  this._urlInterests + idPost;
@@ -108,6 +116,17 @@ export class AccessService {
       map(interests => {
         this.interests = interests;
         return interests;
+      })
+
+    )
+  }
+
+  getComments(idPost: BigInteger){
+    let urlComments =  this._urlComments + idPost;
+    return this.http.get<CommentPost[]>(urlComments).pipe(
+      map(comments => {
+        this.comments = this.comments;
+        return comments;
       })
 
     )

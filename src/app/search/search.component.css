@@ -3,4 +3,7 @@
 }
 
 
-
+.responsive {
+    width: 50%;
+    height: auto;
+  }
