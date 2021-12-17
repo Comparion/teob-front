@@ -16,7 +16,7 @@ export class AccessService {
 
   private _urlRegister = "http://localhost:8080/registration"
   private _urlLogin = "http://localhost:8080/login"
-  private _urlDelete = "http://localhost:8080/delete/"
+  private _urlDeleteComment = "http://localhost:8080/deletecomment/"
   private _urlPosts = "http://localhost:8080/posts"
   private _urlFind = "http://localhost:8080/finduser"
   private _urlInterest = "http://localhost:8080/interests"
@@ -130,6 +130,11 @@ export class AccessService {
       })
 
     )
+  }
+
+  deleteComment(idComment: BigInteger) {
+    this._urlDeleteComment = this._urlDeleteComment + idComment
+    return this.http.delete(this._urlDeleteComment,{ responseType: 'text' } )
   }
 
 

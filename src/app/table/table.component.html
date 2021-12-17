@@ -52,9 +52,10 @@
       <span aria-hidden="true">×</span>
     </button>
   </div>
-  <div class="modal-body border" *ngFor="let comment of comments | async; let i = index" (click)="getUserDetail(comment.username)" (click)="open(userDetailModal)">
-    <h3><b>{{comment.firstName}} {{comment.secondName}} </b> <span style="font-size: 10px;"  class="ownerPost">@{{comment.username}}</span></h3>
+  <div class="modal-body border" *ngFor="let comment of comments | async; let i = index">
+    <h3><b>{{comment.firstName}} {{comment.secondName}} </b> <span (click)="getUserDetail(comment.username)" (click)="open(userDetailModal)" style="font-size: 10px;"  class="ownerPost">@{{comment.username}}</span></h3>
     <h4>{{comment.contents}}</h4>
+    <button (click)="deleteComment(comment.idComment)" *ngIf="comment.username==currentUser" type="button"class="btn btn-primary float-right">Usuń</button>
   </div>
   <div class="modal-footer">
     <h4 class="mb-0"><textarea [(ngModel)]="commentContents"></textarea></h4>

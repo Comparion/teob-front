@@ -132,4 +132,12 @@ export class TableComponent implements OnInit {
     )
     console.log(this.userdetail)
   }
+
+  deleteComment(idComment: BigInteger){
+    this._auth.deleteComment(idComment)
+    .subscribe(
+      res => {console.log(res), window.location.reload();}, 
+      err => console.log(err)
+    );
+  }
 }
