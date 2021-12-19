@@ -8,6 +8,7 @@ export class Post {
     town: string;
     subject: string;
     interests: BigInteger;
+    comments: BigInteger;
     interestUser: boolean;
     //interests: Observable<Interest[]>;
 }

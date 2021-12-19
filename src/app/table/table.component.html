@@ -28,7 +28,7 @@
     <div class="card rounded-0">
       <h3><b>{{post.town}} - {{post.subject}}</b></h3>
       <h4>{{post.body}}<span style="font-size: 10px;" class="ownerPost" (click)="getUserDetail(post.username)" (click)="open(userDetailModal)"> @{{post.username}}</span><span style="float: right; margin-right: 14%; font-size: 40px;"><b class="countInterests" (click)="getInterests(post.id)" (click)="open(mymodal)">{{post.interests}}</b></span></h4>
-      <button (click)="getComments(post.id)" (click)="open(mymodalComments)" (click)="this.commentPost.idPost=post.id"  type="button" style="width: 30%;"  class="btn btn-primary form-control">Komentarze</button>
+      <button (click)="getComments(post.id)" (click)="open(mymodalComments)" (click)="this.commentPost.idPost=post.id"  type="button" style="width: 30%;"  class="btn btn-primary form-control">Komentarze</button><h3 style=" position: absolute; left: 31%; bottom:0px;"><b>{{post.comments}}</b></h3>
       <button (click)="addInterest(post.id)"  type="button" style="width: 30%; position: absolute; right: 5px; bottom:0px;"  class="btn btn-primary form-control" *ngIf="post.interestUser">Jestem Zainteresowany</button><button (click)="addInterest(post.id)" style="width: 30%; position: absolute; right: 5px; bottom:0px;" type="button" class="btn btn-primary form-control niezainteresowany" *ngIf="!post.interestUser">Jestem Zainteresowany</button>
     </div>
   </div>
