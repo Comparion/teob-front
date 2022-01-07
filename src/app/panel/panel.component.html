@@ -27,7 +27,7 @@
               value="{{userdetail.description}}"></textarea><textarea [(ngModel)]="userdetail.description" *ngIf="this.editPanel"
               value="{{userdetail.description}}"></textarea></h4>
           <br>
-          <button (click)="delete()" type="button" style="margin-left: 20px;" class="btn btn-primary float-right">Usuń
+          <button (click)="delete()" routerLink="/" type="button" style="margin-left: 20px;" class="btn btn-primary float-right">Usuń
             konto</button>
           <button *ngIf="!this.editPanel" (click)="edit()" type="button"
             class="btn btn-primary float-right">Edytuj</button>

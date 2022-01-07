@@ -30,6 +30,7 @@ export class PanelComponent implements OnInit {
     this.currentUser = sessionStorage.getItem('username') || '{}'
     this._detail.deleteUser(this.currentUser)
     .subscribe()
+    sessionStorage.removeItem('username');
   }
 
 
