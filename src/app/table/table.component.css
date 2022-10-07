@@ -1,10 +1,6 @@
 .container {
     display: flex; 
-}
-
-.niezainteresowany {
-    background-color: white;
-    color: black;
+    background-color: pink;
 }
 
 .wrapper {
@@ -29,3 +25,27 @@
 .foo {
     right: 0;
   }
+
+/* .btn,.btn-primary, .form-control{
+    background-color: red;
+  } */
+  .btn-primary,
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:visited,
+  .btn-primary:focus {
+      background-color: black;
+      border-color: black;
+      color: white;
+  }
+
+  .card{
+    background-color: darkgray;
+  }
+  textarea{
+    background-color: darkgray;
+  }
+  .col-6{
+    background-color: darkgray;
+  }
+

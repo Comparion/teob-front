@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"> TEOB</a>
+    <a class="navbar-brand" style="color: red;" href="#"> MyLove</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,12 +9,14 @@
           <a class="nav-link" *ngIf="!_auth.isUserLoggedIn()" routerLink="/login" routerLinkActive="active">Logowanie</a>
           <a class="nav-link" *ngIf="!_auth.isUserLoggedIn()" routerLink="/register" routerLinkActive="active">Rejestracja</a>  
           <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/panel" routerLinkActive="active">Panel użytkownika</a> 
-          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/table" routerLinkActive="active">Tablica</a>
+          <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/table" routerLinkActive="active">Ogłoszenia</a>
           <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/search" routerLinkActive="active">Użytkownicy</a>
           <a class="nav-link" *ngIf="_auth.isUserLoggedIn()" routerLink="/" (click)="wyloguj()">Wyloguj się</a>   
       </ul>
     </div>
-  </nav>    
+  </nav> 
+  <div class="main1">  
   <div class="container" >
     <router-outlet></router-outlet>            
   </div>
+  </div> 

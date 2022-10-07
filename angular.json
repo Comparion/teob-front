@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "teob-front"
+  "defaultProject": "teob-front",
+  "cli": {
+    "analytics": false
+  }
 }
