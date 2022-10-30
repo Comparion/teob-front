@@ -1,0 +1,17 @@
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: black;
+    border-color: black;
+    color: white;
+}
+
+.card{
+    background-color: darkgray;
+  }
+
+.form-control{
+    background-color: darkgray;
+  }

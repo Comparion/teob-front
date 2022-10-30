@@ -11,21 +11,57 @@
             <img width="100" (click)="open(mymodal)" class="rounded-circle photo" height="100"  src="{{userdetail.profilePhotoURL}}"id="profilePhoto">
           </div>
         </div>
-        <div class="card-body">
-          <h4 class="mb-0">Imię:<input [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.firstName}}"><input
+        <div class="card-body" >
+          <h4 class="mb-0">Imię:<input style="background-color: darkgray;" [readonly]="true" *ngIf="!this.editPanel" value="{{userdetail.firstName}}"><input style="background-color: darkgray;"
               [(ngModel)]="userdetail.firstName" *ngIf="this.editPanel" value="{{userdetail.firstName}}"></h4>
-          <h4 class="mb-0">Nazwisko:<input [readonly]="true" *ngIf="!this.editPanel"
-              value="{{userdetail.secondName}}"><input [(ngModel)]="userdetail.secondName" *ngIf="this.editPanel"
+          <h4 class="mb-0">Nazwisko:<input style="background-color: darkgray;" [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.secondName}}"><input style="background-color: darkgray;" [(ngModel)]="userdetail.secondName" *ngIf="this.editPanel"
               value="{{userdetail.secondName}}"></h4>
-          <h4 class="mb-0">Numer telefonu:<input [readonly]="true" *ngIf="!this.editPanel"
-              value="{{userdetail.numberPhone}}"><input [(ngModel)]="userdetail.numberPhone" *ngIf="this.editPanel"
+          <h4 class="mb-0">Numer telefonu:<input style="background-color: darkgray;" [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.numberPhone}}"><input style="background-color: darkgray;" [(ngModel)]="userdetail.numberPhone" *ngIf="this.editPanel"
               value="{{userdetail.numberPhone}}"></h4>
-          <h4 class="mb-0">Zainteresowania:<input [readonly]="true" *ngIf="!this.editPanel"
-              value="{{userdetail.interests}}"><input [(ngModel)]="userdetail.interests" *ngIf="this.editPanel"
-              value="{{userdetail.interests}}"></h4>
-          <h4 class="mb-0">Opis:<textarea [readonly]="true" *ngIf="!this.editPanel"
+          <h4 class="mb-0">Upodobania:<input style="background-color: darkgray;" [readonly]="true" *ngIf="!this.editPanel"
+              value="{{userdetail.likes}}"><input style="background-color: darkgray;" [(ngModel)]="userdetail.likes" *ngIf="this.editPanel"
+              value="{{userdetail.likes}}"></h4>
+          <h4 class="mb-0">Opis:<textarea style="background-color: darkgray;" [readonly]="true" *ngIf="!this.editPanel"
               value="{{userdetail.description}}"></textarea><textarea [(ngModel)]="userdetail.description" *ngIf="this.editPanel"
               value="{{userdetail.description}}"></textarea></h4>
+          <br><h4 class="mb-0">Płeć:
+            <!-- <select name="genders" id="genders" style="background-color: darkgray;" *ngIf="!this.editPanel" disabled>
+              <option value="neutral"> </option>
+              <option value="man">Mężczyzna</option>
+              <option value="woman">Kobieta</option>
+            </select>
+            <select name="genders" id="genders" style="background-color: darkgray;" *ngIf="this.editPanel">
+              <option value="neutral"> </option>
+              <option value="man">Mężczyzna</option>
+              <option value="woman">Kobieta</option>
+            </select> -->
+            <!-- <form [formGroup]="countryForm">
+            <select formControlName="countryControl" id="contactMethod" class="form-control" [(ngModel)]="ngDropdown">
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.label }}</option>
+            <option *ngFor="let opt of contactMethods" [value]="opt.value" >{{opt.value}}</option>
+            </select>
+          </form> -->
+          <select style="color:#626567;" class="form-control" id="DropdownOptions" *ngIf="!this.editPanel" [(ngModel)]="userdetail.gender" disabled>
+            <option *ngFor="let opt of genderList" [selected]="opt.key === userdetail.gender" [ngValue]="opt.key">{{ opt.value }}</option>
+          </select>
+          <!-- <select style="color:black;" class="form-control" id="DropdownOptions" *ngIf="this.editPanel" [(ngModel)]="userdetail.gender">
+            <option *ngFor="let opt of contactMethods" [selected]="opt.key === userdetail.gender" [ngValue]="userdetail.gender">{{ opt.value }}</option>
+          </select> -->
+          <select style="color:black;" class="form-control" id="DropdownOptions" *ngIf="this.editPanel" [(ngModel)]="userdetail.gender">
+            <option *ngFor="let opt of genderList" [selected]="opt.key === userdetail.gender" [ngValue]="opt.key">{{opt.value}}</option>
+          </select>
+          </h4>
+
+          <br><h4 class="mb-0">Poszukuje:
+          <select style="color:#626567;" class="form-control" id="DropdownOptions" *ngIf="!this.editPanel" [(ngModel)]="userdetail.lookingFor" disabled>
+            <option *ngFor="let opt of genderList" [selected]="opt.key === userdetail.lookingFor" [ngValue]="opt.key">{{ opt.value }}</option>
+          </select>
+          <select style="color:black;" class="form-control" id="DropdownOptions" *ngIf="this.editPanel" [(ngModel)]="userdetail.lookingFor">
+            <option *ngFor="let opt of genderList" [selected]="opt.key === userdetail.lookingFor" [ngValue]="opt.key">{{opt.value}}</option>
+          </select>
+          </h4>
           <br>
           <button (click)="delete()" routerLink="/" type="button" style="margin-left: 20px;" class="btn btn-primary float-right">Usuń
             konto</button>
@@ -40,6 +76,7 @@
 </div>
 
 <ng-template #mymodal let-modal>
+  <div style="background-color: darkgray;">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Zdjęcie</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -54,4 +91,5 @@
   <div class="modal-footer">
     <button (click)="save(userdetail)" (click)="modal.dismiss('Cross click')" type="button"class="btn btn-primary float-right">Zapisz</button>
   </div>
+</div>
 </ng-template>

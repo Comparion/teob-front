@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { isWhileStatement } from 'typescript';
-import { Interest } from '../Interest';
 import { Post } from '../Post';
 import { CommentPost } from '../CommentPost';
 import { AccessService } from '../services/access/access.service';;
@@ -17,17 +16,17 @@ import { UserDetail } from '../UserDetail';
 })
 export class TableComponent implements OnInit {
   posts: Observable<Post[]>;
-  interests:  Observable<Interest[]>;
   comments:  Observable<CommentPost[]>;
   postSend: Post = new Post;
   town: string = ''
   subject = ''
   currentUser = '';
-  interest: Interest = new Interest;
   commentPost: CommentPost = new CommentPost;
   closeResult = '';
   userdetail: UserDetail;
   commentContents = '';
+  editPanel = false;
+  postModal: Post = new Post;
 
   constructor(public _auth: AccessService, private modalService: NgbModal, public _detail: DetailService) { }
 
@@ -52,7 +51,10 @@ export class TableComponent implements OnInit {
     );
   }
 
- 
+  saveModal(post: Post){
+    this.postModal = post
+  }
+
   wyszukaj(){
     this.getPosts();
     //window.location.reload();
@@ -63,12 +65,6 @@ export class TableComponent implements OnInit {
     this.posts = this._auth.getPosts(this.town, this.subject, this.currentUser);
   }
 
-  getInterests(idPost: BigInteger){
-    this.interests = this._auth.getInterests(idPost);
-    //console.log(this.interests.forEach.)
-    //this.interests.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username))})
-  
-  }
 
   getComments(idPost: BigInteger){
     this.comments = this._auth.getComments(idPost);
@@ -78,19 +74,9 @@ export class TableComponent implements OnInit {
 
   policz(post: Post){
     console.log(post);
-    return (post.interests.forEach).length;
+    return (post.likes.forEach).length;
   }
 
-  addInterest(idPost: BigInteger){
-    this.currentUser = sessionStorage.getItem('username') || '{}';
-    this.interest.username = this.currentUser;
-    this.interest.idPost = idPost;
-    console.log(this.interest.idPost, this.interest.username)
-    this._auth.addInterest(this.interest).subscribe(
-      res => {console.log(res), window.location.reload();}, 
-      err => console.log(err)
-    );
-  }
 
   addComment(){
     //console.log("too " + idPost)
@@ -140,4 +126,19 @@ export class TableComponent implements OnInit {
       err => console.log(err)
     );
   }
+
+  edit(){
+    this.editPanel = true;
+  }
+
+  save(post: Post){
+    this.editPanel = false;
+    this._auth.updatePost(post)
+    .subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
+  }
+
+
 }

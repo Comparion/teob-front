@@ -15,7 +15,6 @@ import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { TscUiModule } from 'tsc-ui';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     NgxCaptchaModule,
     ReactiveFormsModule
-    //TscUiModule
   ],
   providers: [AccessService],
   bootstrap: [AppComponent]

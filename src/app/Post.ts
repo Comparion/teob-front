@@ -1,5 +1,4 @@
 import { Observable } from "rxjs";
-import { Interest } from "./Interest";
 
 export class Post {
     id: BigInteger;
@@ -7,8 +6,8 @@ export class Post {
     body: string;
     town: string;
     subject: string;
-    interests: BigInteger;
+    likes: BigInteger;
     comments: BigInteger;
-    interestUser: boolean;
+    //interestUser: boolean;
     //interests: Observable<Interest[]>;
 }

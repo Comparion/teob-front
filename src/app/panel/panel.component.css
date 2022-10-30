@@ -22,3 +22,30 @@ textarea:read-only {
    cursor:pointer;
    color: blue;
 }  
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: black;
+    border-color: black;
+    color: white;
+}
+
+.card{
+  background-color: darkgray;
+}
+textarea{
+  background-color: darkgray;
+}
+.col-6{
+  background-color: darkgray;
+}
+.field{
+   background-color: darkgray;
+ }
+
+ .form-control{
+  background-color: darkgray;
+}

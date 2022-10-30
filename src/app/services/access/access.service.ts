@@ -5,7 +5,6 @@ import { Post } from '../../Post';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDetail } from 'src/app/UserDetail';
-import { Interest } from 'src/app/Interest';
 import { CommentPost } from 'src/app/CommentPost';
 
 
@@ -19,13 +18,14 @@ export class AccessService {
   private _urlDeleteComment = "http://localhost:8080/deletecomment/"
   private _urlPosts = "http://localhost:8080/posts"
   private _urlFind = "http://localhost:8080/finduser"
-  private _urlInterest = "http://localhost:8080/interests"
-  private _urlInterests = "http://localhost:8080/getinterests?idPost="
+  private _urlSuggestions = "http://localhost:8080/suggestionsuser"
+  private _urlLike = "http://localhost:8080/likes"
+  private _urlLikes = "http://localhost:8080/getlikes?idPost="
   private _urlComment = "http://localhost:8080/comments"
   private _urlComments = "http://localhost:8080/getcomments?idPost="
+  private _urlUpdatePost = "http://localhost:8080/updatepost"
   posts: Post[] = [];
   users: UserDetail[] = [];
-  interests: Interest[] = [];
   comments: Comment[] = []
 
  
@@ -36,11 +36,6 @@ export class AccessService {
     //return this.http.post<any>(this._urlRegister, user);
     return this.http.post(this._urlRegister, user,{ responseType: 'text' });
   }
-
-  // deleteUser(user: String) {
-  //   //this._urlDelete = this._urlDelete + user
-  //   return this.http.delete(this._urlDelete + user)
-  // }
 
   loginUser(user: User) {
     let options = {
@@ -77,17 +72,15 @@ export class AccessService {
     )
   }
 
-  findUsers(firstname: String, secondname: String, username: String){
+  findUsers(username: String, likes: String){
     let urlFind =  this._urlFind;
-    if(username != ''){
+    if(username != '' && likes!=''){
+      urlFind=urlFind+'?username='+username+'&likes='+ likes;
+    }else if(username != ''){
       urlFind=urlFind+'?username='+username
-    }else if(firstname!=''&&secondname!=''){
-      urlFind=urlFind+'?firstname='+firstname+'&secondname='+ secondname;
-    } else if(firstname!=''){
-      urlFind=urlFind+'?firstname='+firstname
-    } else if(secondname!=''){
-      urlFind=urlFind+'?secondname='+secondname
-    }
+    } else if(likes!=''){
+      urlFind=urlFind+'?likes='+likes
+    } 
     return this.http.get<UserDetail[]>(urlFind).pipe(
       map(users => {
         this.users = users;
@@ -97,29 +90,34 @@ export class AccessService {
     )
   }
 
+  suggestionsUsers(username: String){
+    let urlSuggestions =  this._urlSuggestions;
+    if(username != ''){
+      urlSuggestions=urlSuggestions+'?username='+username
+    }
+    return this.http.get<UserDetail[]>(urlSuggestions).pipe(
+      map(users => {
+        this.users = users;
+        return users;
+      })
+
+    )
+  }
+
+
   addPost(post: Post){
     return this.http.post(this._urlPosts, post,{ responseType: 'text' });
   }
 
-  addInterest(interest: Interest){
-    return this.http.post(this._urlInterest, interest,{ responseType: 'text' });
-  }
 
   addComment(comment: CommentPost){
     return this.http.post(this._urlComment, comment,{ responseType: 'text' });
   }
 
-
-  getInterests(idPost: BigInteger){
-    let urlInterests =  this._urlInterests + idPost;
-    return this.http.get<Interest[]>(urlInterests).pipe(
-      map(interests => {
-        this.interests = interests;
-        return interests;
-      })
-
-    )
+  updatePost(post: Post){
+    return this.http.put(this._urlUpdatePost, post, { responseType: 'text' });
   }
+
 
   getComments(idPost: BigInteger){
     let urlComments =  this._urlComments + idPost;
@@ -136,13 +134,5 @@ export class AccessService {
     this._urlDeleteComment = this._urlDeleteComment + idComment
     return this.http.delete(this._urlDeleteComment,{ responseType: 'text' } )
   }
-
-
-  // getPosts(){
-  //   const ret = this.http.get<Post[]>(this._urlPosts);
-  //   //ret.forEach(console.log)
-  //   //console.log("GET POSTS" + ret)
-  //   return ret;
-  // }
 
 }

@@ -7,3 +7,21 @@
     width: 50%;
     height: auto;
   }
+
+  .col-4{
+    background-color: darkgray;
+  }
+
+  .col{
+    background-color: darkgray;
+  }
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: black;
+    border-color: black;
+    color: white;
+}

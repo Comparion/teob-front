@@ -3,8 +3,7 @@ import { AccessService } from '../services/access/access.service';
 import { DetailService } from '../services/detail/detail.service';
 import { UserDetail } from '../UserDetail';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
-
+import {FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-panel',
@@ -17,9 +16,16 @@ export class PanelComponent implements OnInit {
   userdetail: UserDetail;
   editPanel = false;
   closeResult = '';
+  countryForm: FormGroup;
+  gender: String;
 
+  genderList = [
+    {key: ' ', value: " " },
+    {key: 'M', value: "Mężczyzna" },
+    {key: 'K', value: "Kobieta" }
+]
 
-  constructor(public _auth: AccessService, public _detail: DetailService, private modalService: NgbModal) {
+  constructor(public _auth: AccessService, public _detail: DetailService, private modalService: NgbModal, private fb: FormBuilder) {
    }
 
   ngOnInit(): void {
@@ -33,9 +39,9 @@ export class PanelComponent implements OnInit {
     sessionStorage.removeItem('username');
   }
 
-
   detail(){
     this.currentUser = sessionStorage.getItem('username') || '{}'
+    
     this._detail.detailUser(this.currentUser)
     .subscribe(
       response => this.userdetail=response
@@ -55,6 +61,8 @@ export class PanelComponent implements OnInit {
       res => console.log(res),
       err => console.log(err)
     )
+    //console.log("Płeć: " + this.gender);
+    //console.log("Płeć: " + userD.gender);
     //console.log(this.userdetail)
   }
 

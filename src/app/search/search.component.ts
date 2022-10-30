@@ -14,6 +14,8 @@ export class SearchComponent implements OnInit {
   firstname = ''
   secondname =''
   username =''
+  likes =''
+  currentUser = ''
 
   constructor(public _auth: AccessService) { }
 
@@ -22,8 +24,13 @@ export class SearchComponent implements OnInit {
   }
 
   wyszukajUzytkownikow(){
-    this.users = this._auth.findUsers(this.firstname, this.secondname, this.username);
+    this.users = this._auth.findUsers(this.username, this.likes);
     //this.users.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username))})
+  }
+
+  sugestieUzytkownikow(){
+    this.currentUser = sessionStorage.getItem('username') || '{}'
+    this.users = this._auth.suggestionsUsers(this.currentUser);
   }
 
 }

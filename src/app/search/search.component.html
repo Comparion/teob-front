@@ -4,9 +4,12 @@
     </div>
     <div class="card container">
         <div class="row">
-            <input class="col-4" placeholder="imię" [(ngModel)]="firstname">
-            <input class="col-4" placeholder="nazwisko" [(ngModel)]="secondname">
+            <button (click)="sugestieUzytkownikow()" type="button"
+                class="btn btn-primary form-control">Sugestie</button>
+        </div>
+        <div class="row">
             <input class="col-4" placeholder="nazwa użytkownika" [(ngModel)]="username">
+            <input class="col"  placeholder="upodobania" [(ngModel)]="likes">
         </div>
         <div class="row">
             <button (click)="wyszukajUzytkownikow()" type="button"
@@ -23,7 +26,9 @@
             <div class="row">Imie: {{user.firstName}}</div>
             <div class="row">Nazwisko: {{user.secondName}}</div>
             <div class="row">Numer: {{user.numberPhone}}</div>
-            <div class="row">Zainteresowania: {{user.interests}}</div>
+            <div class="row">Upodobania: {{user.likes}}</div>
+            <div class="row">Płeć: {{user.gender}}</div>
+            <div class="row">Poszukuje: {{user.lookingFor}}</div>
         </div>
         <div class="col">Opis: {{user.description}}</div>
     

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../User';
 import { AccessService } from '../services/access/access.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -14,9 +14,9 @@ export class RegisterComponent implements OnInit {
   userDataRegister: User = new User;
   supportPass = "";
   siteKey = "6LfdopkdAAAAANavouhcSDZtaDiy30dL6G1ZBLfy";
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
 
-  constructor(private _auth: AccessService, private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private _auth: AccessService, private router: Router, private formBuilder: UntypedFormBuilder) {}
 
 
   ngOnInit(): void {

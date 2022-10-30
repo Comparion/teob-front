@@ -29,11 +29,15 @@
     <div class="card rounded-0">
       <h3><b>{{post.town}} - {{post.subject}}</b></h3>
       <h4>{{post.body}}<span style="font-size: 10px;" class="ownerPost" (click)="getUserDetail(post.username)" (click)="open(userDetailModal)"> @{{post.username}}</span></h4>
+      <div class="btn-group">
+      <button  *ngIf="post.username==currentUser && !this.editPanel" (click)="open(mymodalOwner); saveModal(post)"  type="button"class="btn btn-secondary">Edytuj</button>
+      </div>
     </div>
   </div>
 </div>
 
 <ng-template #userDetailModal let-modal>
+  <div style="background-color: darkgray;">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title"><b style="font-size: 32px; text-align: center;">{{userdetail.username}}</b></h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -48,8 +52,28 @@
     <h4 class="mb-0"><b>Imię: </b>{{userdetail.firstName}}</h4>
     <h4 class="mb-0"><b>Nazwisko: </b>{{userdetail.secondName}}</h4>
     <h4 class="mb-0"><b>Numer telefonu: </b>{{userdetail.numberPhone}}</h4>
-    <h4 class="mb-0"><b>Zainteresowania: </b>{{userdetail.interests}}</h4>
+    <h4 class="mb-0"><b>Upodobania: </b>{{userdetail.likes}}</h4>
     <h4 class="mb-0"><b>Opis: </b>{{userdetail.description}}</h4>
   </div>
+</div>
+</ng-template>
 
+<ng-template #mymodalOwner let-modal>
+  <div style="background-color: darkgray;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edycja</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body border" >
+    <h4 class="mb-0">Miasto:<input style="background-color: darkgray;" [(ngModel)]="postModal.town" value="{{postModal.town}}"></h4>
+    <h4 class="mb-0">Temat:<input style="background-color: darkgray;" [(ngModel)]="postModal.subject" value="{{postModal.subject}}"></h4>
+    <h4 class="mb-0">Treść:<textarea style="background-color: darkgray;" [(ngModel)]="postModal.body" value="{{postModal.body}}"></textarea></h4>
+  </div>
+  <div class="modal-footer">
+    <button (click)="save(postModal);modal.dismiss('Cross click');" type="button"class="btn btn-secondary">Zapisz</button>
+    <!-- <button  type="button" class="btn btn-secondary">Usuń</button> -->
+  </div>
+  </div>
 </ng-template>
