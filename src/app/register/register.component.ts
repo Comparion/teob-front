@@ -3,7 +3,6 @@ import { User } from '../User';
 import { AccessService } from '../services/access/access.service';
 import { Router } from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -42,13 +41,12 @@ export class RegisterComponent implements OnInit {
       this._auth.registerUser(this.userDataRegister)
         .subscribe(
           res => {
-            //console.log(res);
             if (res == 'ok') {
               window.alert("Zarejestrowano użytkownika.");
               this.router.navigateByUrl('/login');
             }
           },
-         err => {window.alert("Podany nazwa użytkownika/email są już zajęte.");}//console.log(err),
+         err => {window.alert("Podany nazwa użytkownika/email są już zajęte.");}
         )
     } else {
       window.alert("Podane hasła nie są identyczne.")

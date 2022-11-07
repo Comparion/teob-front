@@ -8,6 +8,4 @@ export class Post {
     subject: string;
     likes: BigInteger;
     comments: BigInteger;
-    //interestUser: boolean;
-    //interests: Observable<Interest[]>;
 }

@@ -5,7 +5,6 @@ import { RegisterComponent } from './register/register.component';
 import { PanelComponent } from './panel/panel.component';
 import { TableComponent } from './table/table.component';
 import { SearchComponent } from './search/search.component';
-import { HeadComponent } from './head/head.component';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [

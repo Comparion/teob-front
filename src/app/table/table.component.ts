@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { isWhileStatement } from 'typescript';
 import { Post } from '../Post';
-import { CommentPost } from '../CommentPost';
 import { AccessService } from '../services/access/access.service';;
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { DetailService } from '../services/detail/detail.service';
@@ -16,12 +14,10 @@ import { UserDetail } from '../UserDetail';
 })
 export class TableComponent implements OnInit {
   posts: Observable<Post[]>;
-  comments:  Observable<CommentPost[]>;
   postSend: Post = new Post;
   town: string = ''
   subject = ''
   currentUser = '';
-  commentPost: CommentPost = new CommentPost;
   closeResult = '';
   userdetail: UserDetail;
   commentContents = '';
@@ -37,8 +33,6 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPosts();
-    //this.posts.forEach(obj => {obj.forEach(objChild => console.log(objChild.town, objChild.id, Object.keys(objChild.interests).length))})
-
   }
 
   dodaj(post: Post){
@@ -57,40 +51,12 @@ export class TableComponent implements OnInit {
 
   wyszukaj(){
     this.getPosts();
-    //window.location.reload();
   }
   
   getPosts(){
     this.currentUser = sessionStorage.getItem('username') || '{}';
     this.posts = this._auth.getPosts(this.town, this.subject, this.currentUser);
   }
-
-
-  getComments(idPost: BigInteger){
-    this.comments = this._auth.getComments(idPost);
-    this.comments.forEach(obj => {obj.forEach(objChild => console.log(objChild.firstName, objChild.secondName, objChild.username, objChild.idComment, objChild.idPost, objChild.contents))})
-  
-  }
-
-  policz(post: Post){
-    console.log(post);
-    return (post.likes.forEach).length;
-  }
-
-
-  addComment(){
-    //console.log("too " + idPost)
-    this.currentUser = sessionStorage.getItem('username') || '{}';
-    this.commentPost.username = this.currentUser;
-    //this.commentPost.idPost = idPost;
-    this.commentPost.contents = this.commentContents;
-    console.log(this.commentPost.idPost, this.commentPost.username)
-    this._auth.addComment(this.commentPost).subscribe(
-      res => {console.log(res), window.location.reload();}, 
-      err => console.log(err)
-    );
-  }
-
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -117,14 +83,6 @@ export class TableComponent implements OnInit {
       response => this.userdetail=response
     )
     console.log(this.userdetail)
-  }
-
-  deleteComment(idComment: BigInteger){
-    this._auth.deleteComment(idComment)
-    .subscribe(
-      res => {console.log(res), window.location.reload();}, 
-      err => console.log(err)
-    );
   }
 
   edit(){

@@ -27,28 +27,9 @@
               value="{{userdetail.description}}"></textarea><textarea [(ngModel)]="userdetail.description" *ngIf="this.editPanel"
               value="{{userdetail.description}}"></textarea></h4>
           <br><h4 class="mb-0">Płeć:
-            <!-- <select name="genders" id="genders" style="background-color: darkgray;" *ngIf="!this.editPanel" disabled>
-              <option value="neutral"> </option>
-              <option value="man">Mężczyzna</option>
-              <option value="woman">Kobieta</option>
-            </select>
-            <select name="genders" id="genders" style="background-color: darkgray;" *ngIf="this.editPanel">
-              <option value="neutral"> </option>
-              <option value="man">Mężczyzna</option>
-              <option value="woman">Kobieta</option>
-            </select> -->
-            <!-- <form [formGroup]="countryForm">
-            <select formControlName="countryControl" id="contactMethod" class="form-control" [(ngModel)]="ngDropdown">
-            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.label }}</option>
-            <option *ngFor="let opt of contactMethods" [value]="opt.value" >{{opt.value}}</option>
-            </select>
-          </form> -->
           <select style="color:#626567;" class="form-control" id="DropdownOptions" *ngIf="!this.editPanel" [(ngModel)]="userdetail.gender" disabled>
             <option *ngFor="let opt of genderList" [selected]="opt.key === userdetail.gender" [ngValue]="opt.key">{{ opt.value }}</option>
           </select>
-          <!-- <select style="color:black;" class="form-control" id="DropdownOptions" *ngIf="this.editPanel" [(ngModel)]="userdetail.gender">
-            <option *ngFor="let opt of contactMethods" [selected]="opt.key === userdetail.gender" [ngValue]="userdetail.gender">{{ opt.value }}</option>
-          </select> -->
           <select style="color:black;" class="form-control" id="DropdownOptions" *ngIf="this.editPanel" [(ngModel)]="userdetail.gender">
             <option *ngFor="let opt of genderList" [selected]="opt.key === userdetail.gender" [ngValue]="opt.key">{{opt.value}}</option>
           </select>

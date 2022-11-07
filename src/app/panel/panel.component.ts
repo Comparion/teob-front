@@ -61,9 +61,6 @@ export class PanelComponent implements OnInit {
       res => console.log(res),
       err => console.log(err)
     )
-    //console.log("Płeć: " + this.gender);
-    //console.log("Płeć: " + userD.gender);
-    //console.log(this.userdetail)
   }
 
   open(content:any) {
